@@ -1,0 +1,105 @@
+Main Program (Main)
+	1.	Load drivers’ data from drivers.txt into a DriverManager object.
+	2.	Accept customer details from the user and create a Customer object.
+	3.	Accept restaurant details from the user and create a Restaurant object.
+	4.	Accept order details, including meals and prices, and create an Order object.
+	5.	Use DriverManager to find the nearest available driver based on the restaurant’s location.
+	6.	If no driver matches the location:
+	•	Generate an invoice informing the customer that delivery is unavailable.
+	7.	If a driver is found:
+	•	Generate an invoice with all order and delivery details.
+	•	Save the invoice as a text file.
+
+Class: Customer
+	•	Attributes:
+	•	String name
+	•	String contactNumber
+	•	String address
+	•	String city
+	•	String email
+	•	Methods:
+	•	Customer(...) - Constructor.
+
+Class: Restaurant
+	•	Attributes:
+	•	String name
+	•	String location
+	•	String contactNumber
+	•	Methods:
+	•	Restaurant(...) - Constructor.
+
+Class: Order
+	•	Attributes:
+	•	String orderNumber
+	•	Customer customer
+	•	Restaurant restaurant
+	•	Map<String, Integer> meals
+	•	Map<String, Double> mealPrices
+	•	String specialInstructions
+	•	double totalAmount
+	•	Methods:
+	•	Order(...) - Constructor.
+	•	calculateTotalAmount() - Calculates the total order amount.
+
+Class: Driver
+	•	Attributes:
+	•	String name
+	•	String city
+	•	int load
+	•	Methods:
+	•	Driver(...) - Constructor.
+
+Class: DriverManager
+	•	Attributes:
+	•	List<Driver> drivers
+	•	Methods:
+	•	DriverManager(String filePath) - Loads driver data.
+	•	assignDriver(String city) - Matches a driver to the restaurant’s location with the smallest load.
+
+Class: InvoiceGenerator
+	•	Methods:
+	•	generateInvoice(Order order, Driver driver) - Generates the invoice, handling unmatched locations appropriately.
+
+Illustrating Relationships Between Classes in Text Form
+
+1.	Main Class:
+	•	Creates:
+	•	Customer objects to represent customer details.
+	•	Restaurant objects to represent restaurant details.
+	•	Order objects to encapsulate all order-related information.
+	•	Uses:
+	•	DriverManager to find and assign the nearest driver based on the restaurant’s location.
+	•	InvoiceGenerator to generate an invoice for the customer.
+
+2.	Customer Class:
+	•	Represents the customer.
+	•	Referenced By:
+	•	Order (as an attribute).
+
+3.	Restaurant Class:
+	•	Represents the restaurant.
+	•	Referenced By:
+	•	Order (as an attribute).
+
+4.	Order Class:
+	•	Contains details of the order, including references to the Customer and Restaurant objects.
+	•	Used By:
+	•	Main (to create and manage orders).
+	•	InvoiceGenerator (to generate invoices).
+
+5.	DriverManager Class:
+	•	Manages a list of drivers.
+	•	Uses:
+	•	Driver objects to find and assign the nearest available driver.
+
+6.	Driver Class:
+	•	Represents individual drivers.
+	•	Managed By:
+	•	DriverManager.
+
+7.	InvoiceGenerator Class:
+	•	Generates invoices for orders.
+	•	Uses:
+	•	Order to retrieve order details.
+	•	Driver to include delivery details in the invoice.
+
